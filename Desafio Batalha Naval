@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+#define TAMANHO_TABULEIRO 10
+#define TAMANHO_NAVIO 3
+#define VALOR_AGUA 0
+#define VALOR_NAVIO 3
+
+int main() {
+    int tabuleiro[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            tabuleiro[i][j] = VALOR_AGUA;
+        }
+    }
+
+    int linhaH = 2;
+    int colunaH = 4;
+    if (colunaH + TAMANHO_NAVIO <= TAMANHO_TABULEIRO) {
+        for (int i = 0; i < TAMANHO_NAVIO; i++) {
+            tabuleiro[linhaH][colunaH + i] = VALOR_NAVIO;
+        }
+    }
+
+    int linhaV = 5;
+    int colunaV = 7;
+    if (linhaV + TAMANHO_NAVIO <= TAMANHO_TABULEIRO) {
+        for (int i = 0; i < TAMANHO_NAVIO; i++) {
+            if (tabuleiro[linhaV + i][colunaV] == VALOR_AGUA) {
+                tabuleiro[linhaV + i][colunaV] = VALOR_NAVIO;
+            }
+        }
+    }
+
+    printf("=== TABULEIRO BATALHA NAVAL ===\n");
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
